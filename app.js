@@ -20,9 +20,19 @@ from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 /* LOGIN */
 /* ========================================= */
 
-const USER = "Javier";
-const PASSWORD = "Shield2025";
+const usuarios = [
 
+  {
+    user:"Javier",
+    password:"Shield2025"
+  },
+
+  {
+    user:"Guadalupe",
+    password:"Shield2025"
+  }
+
+];
 /* ========================================= */
 /* STORAGE */
 /* ========================================= */
@@ -135,6 +145,7 @@ const equiposCarroceria = [
   "Luis Becerril",
   "Juan Luis",
   "Alejandro Rangel",
+  "Aldo Angeles",
   "Oscar Madrid"
 
 ];
@@ -306,7 +317,15 @@ function login(){
   const password =
   document.getElementById("loginPassword").value;
 
-  if(user === USER && password === PASSWORD){
+const valido =
+usuarios.find(u=>
+
+  u.user === user &&
+  u.password === password
+
+);
+
+if(valido){
 
     localStorage.setItem(
       "loginActivo",
