@@ -1,0 +1,642 @@
+/* ========================================= */
+/* RESET */
+/* ========================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  background:#0f172a;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* ========================================= */
+/* LOGIN */
+/* ========================================= */
+
+.login-screen{
+  width:100%;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+  linear-gradient(
+    135deg,
+    #0f172a,
+    #1e293b
+  );
+}
+
+.login-box{
+  width:400px;
+  background:#1e293b;
+  padding:40px;
+  border-radius:22px;
+  border:1px solid #334155;
+  box-shadow:
+  0 0 25px rgba(0,0,0,.35);
+}
+
+.login-box h1{
+  text-align:center;
+  margin-bottom:10px;
+  font-size:34px;
+}
+
+.login-box p{
+  text-align:center;
+  color:#94a3b8;
+  margin-bottom:30px;
+}
+
+.login-form{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.login-form input{
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#334155;
+  color:white;
+  font-size:15px;
+}
+
+.login-form input:focus{
+  outline:none;
+  border:2px solid #3b82f6;
+}
+
+.login-form button{
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+  font-size:15px;
+}
+
+.login-form button:hover{
+  background:#1d4ed8;
+}
+
+#loginError{
+  color:#ef4444;
+  font-size:14px;
+}
+
+/* ========================================= */
+/* APP */
+/* ========================================= */
+
+#appContainer{
+  display:flex;
+  min-height:100vh;
+}
+
+/* ========================================= */
+/* SIDEBAR */
+/* ========================================= */
+
+.sidebar{
+  width:260px;
+  background:#111827;
+  padding:25px;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  overflow-y:auto;
+  border-right:1px solid #1e293b;
+}
+
+.logo{
+  font-size:30px;
+  font-weight:bold;
+  color:#3b82f6;
+  margin-bottom:40px;
+  text-align:center;
+}
+
+.menu-item{
+  background:#1e293b;
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:14px;
+  cursor:pointer;
+  transition:.3s;
+  text-align:center;
+  font-size:15px;
+  border:1px solid transparent;
+}
+
+.menu-item:hover{
+  background:#334155;
+  transform:translateY(-2px);
+  border:1px solid #3b82f6;
+}
+
+.logout-btn{
+  margin-top:40px;
+  background:#991b1b;
+}
+
+.logout-btn:hover{
+  background:#b91c1c;
+}
+
+/* ========================================= */
+/* MAIN */
+/* ========================================= */
+
+.main{
+  margin-left:260px;
+  width:calc(100% - 260px);
+  padding:30px;
+}
+
+/* ========================================= */
+/* SECTIONS */
+/* ========================================= */
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+/* ========================================= */
+/* TITLES */
+/* ========================================= */
+
+.section-title{
+  font-size:34px;
+  margin-bottom:30px;
+}
+
+.sub-title{
+  font-size:24px;
+  margin:
+  35px 0 20px;
+  color:#cbd5e1;
+}
+
+.topbar{
+  margin-bottom:35px;
+}
+
+.topbar h1{
+  font-size:38px;
+}
+
+.topbar h2{
+  color:#94a3b8;
+  margin-top:8px;
+  font-weight:normal;
+}
+
+/* ========================================= */
+/* CARDS */
+/* ========================================= */
+
+.cards{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(250px,1fr));
+  gap:22px;
+}
+
+.card{
+  background:#1e293b;
+  border-radius:22px;
+  padding:25px;
+  margin-bottom:25px;
+  border:1px solid #334155;
+  box-shadow:
+  0 0 20px rgba(0,0,0,.15);
+}
+
+.card h2{
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#94a3b8;
+}
+
+/* ========================================= */
+/* FORMS */
+/* ========================================= */
+
+.form-container{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+}
+
+.form-group label{
+  margin-bottom:8px;
+  color:#cbd5e1;
+  font-size:14px;
+}
+
+.form-group input,
+.form-group select{
+  padding:13px;
+  border:none;
+  border-radius:12px;
+  background:#334155;
+  color:white;
+  font-size:14px;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+  outline:none;
+  border:2px solid #3b82f6;
+}
+
+/* ========================================= */
+/* BUTTONS */
+/* ========================================= */
+
+button{
+  margin-top:25px;
+  padding:14px 22px;
+  border:none;
+  border-radius:12px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+  font-size:15px;
+}
+
+button:hover{
+  background:#1d4ed8;
+  transform:translateY(-2px);
+}
+
+/* ========================================= */
+/* DELETE BUTTON */
+/* ========================================= */
+
+.delete-btn{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:12px;
+  background:#991b1b;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  transition:.3s;
+  margin:auto;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.delete-btn:hover{
+  background:#dc2626;
+  transform:scale(1.05);
+}
+
+/* ========================================= */
+/* TABLES */
+/* ========================================= */
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:20px;
+}
+
+thead{
+  background:#334155;
+}
+
+th{
+  padding:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+td{
+  padding:14px;
+  text-align:center;
+  border-bottom:1px solid #334155;
+  font-size:14px;
+}
+
+tbody tr:hover{
+  background:#243244;
+}
+
+/* ========================================= */
+/* CHECKBOX */
+/* ========================================= */
+
+input[type="checkbox"]{
+  width:18px;
+  height:18px;
+  cursor:pointer;
+}
+
+/* ========================================= */
+/* EQUIPOS */
+/* ========================================= */
+
+.equipo-card{
+  background:#1e293b;
+  padding:22px;
+  border-radius:20px;
+  border:1px solid #334155;
+  box-shadow:
+  0 0 18px rgba(0,0,0,.15);
+}
+
+.equipo-card h3{
+  margin-bottom:14px;
+  font-size:22px;
+}
+
+.equipo-card p{
+  margin-bottom:10px;
+  color:#cbd5e1;
+}
+
+/* ========================================= */
+/* DISPONIBILIDAD */
+/* ========================================= */
+
+.disponible{
+  color:#22c55e;
+  font-weight:bold;
+}
+
+.media{
+  color:#facc15;
+  font-weight:bold;
+}
+
+.saturado{
+  color:#ef4444;
+  font-weight:bold;
+}
+
+/* ========================================= */
+/* PRODUCCION */
+/* ========================================= */
+
+.produccion-card{
+  background:#1e293b;
+  border-radius:22px;
+  padding:25px;
+  margin-bottom:30px;
+  border:1px solid #334155;
+}
+
+.produccion-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:25px;
+}
+
+.produccion-header h2{
+  font-size:24px;
+}
+
+.produccion-grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+/* ========================================= */
+/* ACTIVIDADES */
+/* ========================================= */
+
+.actividad-card{
+  background:#243244;
+  border-radius:18px;
+  padding:20px;
+  border:1px solid #334155;
+  transition:.3s;
+}
+
+.actividad-card:hover{
+  transform:translateY(-3px);
+}
+
+.actividad-card h4{
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.actividad-card p{
+  margin-bottom:10px;
+  color:#cbd5e1;
+}
+
+.actividad-card select{
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#334155;
+  color:white;
+}
+
+/* ========================================= */
+/* ALERTAS */
+/* ========================================= */
+
+.alerta-tiempo{
+  border-left:6px solid #22c55e;
+}
+
+.alerta-proxima{
+  border-left:6px solid #facc15;
+}
+
+.alerta-atraso{
+  border-left:6px solid #ef4444;
+}
+
+/* ========================================= */
+/* ESTADOS */
+/* ========================================= */
+
+.estado-no-iniciado{
+  background:#475569;
+}
+
+.estado-en-curso{
+  background:#f59e0b;
+}
+
+.estado-listo{
+  background:#22c55e;
+}
+
+/* ========================================= */
+/* FILE INPUT */
+/* ========================================= */
+
+input[type="file"]{
+  background:#334155;
+  padding:10px;
+  border-radius:10px;
+}
+
+/* ========================================= */
+/* SCROLLBAR */
+/* ========================================= */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#0f172a;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#334155;
+  border-radius:12px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#475569;
+}
+
+/* ========================================= */
+/* RESPONSIVE */
+/* ========================================= */
+
+@media(max-width:1100px){
+
+  .sidebar{
+    width:100%;
+    position:relative;
+    height:auto;
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+
+  #appContainer{
+    flex-direction:column;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .form-container{
+    grid-template-columns:1fr;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .produccion-grid{
+    grid-template-columns:1fr;
+  }
+
+  table{
+    display:block;
+    overflow-x:auto;
+  }
+
+  .topbar h1{
+    font-size:30px;
+  }
+
+  .section-title{
+    font-size:28px;
+  }
+
+}
+
+.carroceria-tag{
+
+  color:#ef4444;
+  font-weight:bold;
+
+}
+
+.puertas-tag{
+
+  color:#22c55e;
+  font-weight:bold;
+
+}
+
+/* ========================================= */
+/* PRODUCCION DESPLEGABLE */
+/* ========================================= */
+
+.produccion-header{
+
+  cursor:pointer;
+
+}
+
+.produccion-body{
+
+  display:none;
+  margin-top:20px;
+
+}
+
+.produccion-body.active{
+
+  display:block;
+
+}
+
+.img-link{
+
+  color:#a855f7;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+
+}
+
+.img-link:hover{
+
+  color:#c084fc;
+  text-decoration:underline;
+
+}

@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    ShieldControl V2
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+<body>
+
+  <!-- ========================================= -->
+  <!-- LOGIN -->
+  <!-- ========================================= -->
+
+  <div id="loginScreen" class="login-screen">
+
+    <div class="login-box">
+
+      <h1>
+        ShieldControl
+      </h1>
+
+      <p>
+        Sistema de Producción Blindaje
+      </p>
+
+      <div class="login-form">
+
+        <input
+          type="text"
+          id="loginUser"
+          placeholder="Usuario"
+        >
+
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Contraseña"
+        >
+
+        <button onclick="login()">
+          Ingresar
+        </button>
+
+        <p id="loginError"></p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ========================================= -->
+  <!-- SISTEMA -->
+  <!-- ========================================= -->
+
+  <div
+    id="appContainer"
+    style="display:none;"
+  >
+
+    <!-- ========================================= -->
+    <!-- SIDEBAR -->
+    <!-- ========================================= -->
+
+    <div class="sidebar">
+
+      <div class="logo">
+        ShieldControl
+      </div>
+
+      <div
+        class="menu-item"
+        onclick="showSection('dashboard')"
+      >
+
+        Dashboard
+
+      </div>
+
+      <div
+        class="menu-item"
+        onclick="showSection('agregarVehiculo')"
+      >
+
+        Agregar Vehículo
+
+      </div>
+
+      <div
+        class="menu-item"
+        onclick="showSection('vehiculos')"
+      >
+
+        Vehículos
+
+      </div>
+
+      <div
+        class="menu-item"
+        onclick="showSection('equipos')"
+      >
+
+        Equipos
+
+      </div>
+
+      <div
+        class="menu-item"
+        onclick="showSection('produccion')"
+      >
+
+        Producción
+
+      </div>
+
+      <div
+        class="menu-item"
+        onclick="showSection('fibra')"
+      >
+
+        Fibra
+
+      </div>
+
+      <div
+        class="menu-item"
+        onclick="showSection('cristales')"
+      >
+
+        Cristales
+
+      </div>
+
+      <div
+        class="menu-item logout-btn"
+        onclick="logout()"
+      >
+
+        Cerrar Sesión
+
+      </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- MAIN -->
+    <!-- ========================================= -->
+
+    <div class="main">
+
+      <!-- ========================================= -->
+      <!-- DASHBOARD -->
+      <!-- ========================================= -->
+
+      <section
+        id="dashboard"
+        class="section active"
+      >
+
+        <div class="topbar">
+
+          <h1>
+            Dashboard General
+          </h1>
+
+          <h2>
+            Control General de Producción
+          </h2>
+
+        </div>
+
+        <div class="cards">
+
+          <div class="card">
+
+            <h2 id="totalVehiculos">
+              0
+            </h2>
+
+            <p>
+              Vehículos Activos
+            </p>
+
+          </div>
+
+          <div class="card">
+
+            <h2 id="totalAtrasos">
+              0
+            </h2>
+
+            <p>
+              Actividades Atrasadas
+            </p>
+
+          </div>
+
+          <div class="card">
+
+            <h2 id="totalSaturados">
+              0
+            </h2>
+
+            <p>
+              Equipos Saturados
+            </p>
+
+          </div>
+
+          <div class="card">
+
+            <h2 id="promedioDias">
+              0
+            </h2>
+
+            <p>
+              Tiempo Total Estimado
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- DASHBOARD CARROCERIA -->
+
+        <h2 class="sub-title">
+          Dashboard Carrocería
+        </h2>
+
+        <div
+          class="cards"
+          id="dashboardCarroceria"
+        >
+
+        </div>
+
+        <!-- DASHBOARD PUERTAS -->
+
+        <h2 class="sub-title">
+          Dashboard Puertas
+        </h2>
+
+        <div
+          class="cards"
+          id="dashboardPuertas"
+        >
+
+        </div>
+
+      </section>
+
+      <!-- ========================================= -->
+      <!-- AGREGAR VEHICULO -->
+      <!-- ========================================= -->
+
+      <section
+        id="agregarVehiculo"
+        class="section"
+      >
+
+        <h1 class="section-title">
+          Agregar Vehículo
+        </h1>
+
+        <div class="card">
+
+          <div class="form-container">
+
+            <div class="form-group">
+
+              <label>
+                O.T.
+              </label>
+
+              <input
+                type="text"
+                id="ordenTrabajo"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Marca
+              </label>
+
+              <input
+                type="text"
+                id="marca"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Modelo
+              </label>
+
+              <input
+                type="text"
+                id="modelo"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Fecha ingreso
+              </label>
+
+              <input
+                type="date"
+                id="fechaIngreso"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Fecha arrivo cristales
+              </label>
+
+              <input
+                type="date"
+                id="fechaCristales"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Tipo Cristales
+              </label>
+
+              <select id="tipoCristal">
+
+                <option>
+                  19mm
+                </option>
+
+                <option>
+                  B33
+                </option>
+
+ 		<option>
+   		 PG ULTRA
+ 		 </option>
+
+                <option>
+                  32mm
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Proveedor Cristales
+              </label>
+
+              <select id="proveedorCristal">
+
+                <option>
+                  PG Products
+                </option>
+
+                <option>
+                  AGP Glass
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Quemacocos
+              </label>
+
+              <select id="tipoQuemacocos">
+
+                <option>
+                  QC Cristal Blindado
+                </option>
+
+                <option>
+                  QC Pan Cancelado
+                </option>
+
+                <option>
+                  QC Acero
+                </option>
+
+              </select>
+
+            </div>
+
+            <!-- CARROCERIA -->
+
+            <div class="form-group">
+
+              <label>
+                Equipo Carrocería
+              </label>
+
+              <select id="equipoCarroceria">
+
+                <option>
+                  Luis Martinez
+                </option>
+
+                <option>
+                  Pedro Pascual
+                </option>
+
+                <option>
+                  Angel Jimenez
+                </option>
+
+                <option>
+                  Alberto Martinez
+                </option>
+
+                <option>
+                  Luis Becerril
+                </option>
+
+                <option>
+                  Juan Luis
+                </option>
+
+                <option>
+                  Alejandro Rangel
+                </option>
+
+                <option>
+                  Oscar Madrid
+                </option>
+
+              </select>
+
+            </div>
+
+            <!-- PUERTAS -->
+
+            <div class="form-group">
+
+              <label>
+                Equipo Puertas
+              </label>
+
+              <select id="equipoPuertas">
+
+                <option>
+                  Benito Cocileon
+                </option>
+
+                <option>
+                  Carlos Callejas
+                </option>
+
+                <option>
+                  Alejandro Lavarieja
+                </option>
+
+                <option>
+                  Nancy Cortez
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+          <button onclick="guardarVehiculo()">
+
+            Guardar Vehículo
+
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- ========================================= -->
+      <!-- VEHICULOS -->
+      <!-- ========================================= -->
+
+      <section
+        id="vehiculos"
+        class="section"
+      >
+
+        <h1 class="section-title">
+          Vehículos Registrados
+        </h1>
+
+        <div class="card">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+<th>
+  #
+</th>
+                <th>
+                  Cinturones
+                </th>
+
+                <th>
+                  Elevadores
+                </th>
+
+                <th>
+                  O.T.
+                </th>
+
+                <th>
+                  Vehículo
+                </th>
+
+                <th>
+                  Ingreso
+                </th>
+
+                <th>
+                  Cristales
+                </th>
+
+		<th>
+ 		 Proveedor
+		</th>
+
+                <th>
+                  Quemacocos
+                </th>
+
+                <th>
+                  Carrocería
+                </th>
+
+                <th>
+                  Puertas
+                </th>
+
+                <th>
+                  Salida
+                </th>
+
+                <th>
+                  Eliminar
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="tablaVehiculos">
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+      <!-- ========================================= -->
+      <!-- EQUIPOS -->
+      <!-- ========================================= -->
+
+      <section
+        id="equipos"
+        class="section"
+      >
+
+        <h1 class="section-title">
+          Equipos
+        </h1>
+
+        <h2 class="sub-title">
+          Equipos Carrocería
+        </h2>
+
+        <div
+          class="cards"
+          id="equiposCarroceria"
+        >
+
+        </div>
+
+        <h2 class="sub-title">
+          Equipos Puertas
+        </h2>
+
+        <div
+          class="cards"
+          id="equiposPuertas"
+        >
+
+        </div>
+
+      </section>
+
+      <!-- ========================================= -->
+      <!-- PRODUCCION -->
+      <!-- ========================================= -->
+
+      <section
+        id="produccion"
+        class="section"
+      >
+
+        <h1 class="section-title">
+          Producción
+        </h1>
+
+        <div id="contenedorProduccion">
+
+        </div>
+
+      </section>
+
+      <!-- ========================================= -->
+      <!-- FIBRA -->
+      <!-- ========================================= -->
+
+      <section
+        id="fibra"
+        class="section"
+      >
+
+        <h1 class="section-title">
+          Fibra
+        </h1>
+
+        <div class="card">
+
+          <div class="form-container">
+
+            <div class="form-group">
+
+              <label>
+                O.T.
+              </label>
+
+              <input
+                type="text"
+                id="fibraOT"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Vehículo
+              </label>
+
+              <input
+                type="text"
+                id="fibraVehiculo"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Pieza
+              </label>
+
+              <select id="fibraPieza">
+
+                <option>
+                  Toldo
+                </option>
+
+                <option>
+                  Corona Del.
+                </option>
+
+                <option>
+                  Zona de carga Der.
+                </option>
+
+                <option>
+                  Zona de carga Izq.
+                </option>
+
+                <option>
+                  Tolva Der.
+                </option>
+
+                <option>
+                  Tolva Izq.
+                </option>
+
+                <option>
+                  Puerta Del.
+                </option>
+
+                <option>
+                  Puerta Tras.
+                </option>
+
+                <option>
+                  5ta puerta
+                </option>
+
+                <option>
+                  Cofre
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Cantidad recibida
+              </label>
+
+              <input
+                type="number"
+                id="fibraRecibida"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Fecha recibido
+              </label>
+
+              <input
+                type="date"
+                id="fibraFechaRecibido"
+              >
+
+            </div>
+
+          </div>
+
+          <button onclick="guardarFibra()">
+
+            Guardar Fibra
+
+          </button>
+
+        </div>
+
+        <div class="card">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  O.T.
+                </th>
+
+                <th>
+                  Vehículo
+                </th>
+
+                <th>
+                  Pieza
+                </th>
+
+                <th>
+                  Cantidad
+                </th>
+
+                <th>
+                  Fecha recibido
+                </th>
+
+                <th>
+                  Fecha entrega
+                </th>
+
+                <th>
+                  Entregar
+                </th>
+
+                <th>
+                  Eliminar
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="tablaFibra">
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+      <!-- ========================================= -->
+      <!-- CRISTALES -->
+      <!-- ========================================= -->
+
+      <section
+        id="cristales"
+        class="section"
+      >
+
+        <h1 class="section-title">
+          Cristales
+        </h1>
+
+        <div class="card">
+
+          <div class="form-container">
+
+            <div class="form-group">
+
+              <label>
+                O.T.
+              </label>
+
+              <input
+                type="text"
+                id="cristalOT"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Vehículo
+              </label>
+
+              <input
+                type="text"
+                id="cristalVehiculo"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Fecha ingreso
+              </label>
+
+              <input
+                type="date"
+                id="cristalFecha"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Tipo Cristal
+              </label>
+
+              <select id="cristalTipo">
+
+                <option>
+                  Parabrisas
+                </option>
+
+                <option>
+                  Medallón
+                </option>
+
+                <option>
+                  PDD
+                </option>
+
+                <option>
+                  PDI
+                </option>
+
+                <option>
+                  PTD
+                </option>
+
+                <option>
+                  PTI
+                </option>
+
+                <option>
+                  CI
+                </option>
+
+                <option>
+                  CD
+                </option>
+
+                <option>
+                  VI
+                </option>
+
+                <option>
+                  VD
+                </option>
+
+                <option>
+                  QC
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Observaciones
+              </label>
+
+              <input
+                type="text"
+                id="cristalObservaciones"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Subir IMG
+              </label>
+
+              <input
+                type="file"
+                id="cristalArchivo"
+		accept="image/*"
+              >
+
+            </div>
+
+          </div>
+
+          <button onclick="guardarCristal()">
+
+            Guardar Cristal
+
+          </button>
+
+        </div>
+
+        <div class="card">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  O.T.
+                </th>
+
+                <th>
+                  Vehículo
+                </th>
+
+                <th>
+                  Fecha
+                </th>
+
+                <th>
+                  Cristal
+                </th>
+
+                <th>
+                  Observaciones
+                </th>
+
+                <th>
+                  Archivo
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="tablaCristales">
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+<script src="historial.js"></script>
+<script type="module" src="firebase.js"></script>
+<script type="module" src="app.js"></script>
+
+
+</body>
+</html>
