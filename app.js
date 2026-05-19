@@ -609,11 +609,35 @@ function renderVehiculos(){
 
 
         <td>
-          <input type="checkbox">
+          <input
+  type="checkbox"
+
+  ${v.cinturones ? "checked" : ""}
+
+  onchange="
+    toggleCheck(
+      ${v.id},
+      'cinturones',
+      this.checked
+    )
+  "
+>
         </td>
 
         <td>
-          <input type="checkbox">
+         <input
+  type="checkbox"
+
+  ${v.elevadores ? "checked" : ""}
+
+  onchange="
+    toggleCheck(
+      ${v.id},
+      'elevadores',
+      this.checked
+    )
+  "
+>
         </td>
 
 
@@ -1027,6 +1051,37 @@ function renderActividades(lista,id,area){
   }).join("");
 
 }
+
+
+
+async function toggleCheck(id,campo,valor){
+
+  const vehiculo =
+  vehiculos.find(v=>v.id === id);
+
+  vehiculo[campo] = valor;
+
+  await updateDoc(
+
+    doc(
+      db,
+      "vehiculos",
+      vehiculo.firebaseId
+    ),
+
+    {
+
+      [campo]:valor
+
+    }
+
+  );
+
+  cargarVehiculos();
+
+}
+
+
 
 /* ========================================= */
 /* CAMBIAR ESTADO */
@@ -1464,3 +1519,4 @@ window.eliminarFibra = eliminarFibra;
 window.guardarCristal = guardarCristal;
 window.toggleProduccion = toggleProduccion;
 window.cambiarEstado = cambiarEstado;
+window.toggleCheck = toggleCheck;
