@@ -33,6 +33,9 @@ const usuarios = [
   }
 
 ];
+
+const DELETE_PASSWORD = "PEYJAV2020";
+
 /* ========================================= */
 /* STORAGE */
 /* ========================================= */
@@ -730,6 +733,17 @@ function renderVehiculos(){
 
 async function eliminarVehiculo(id){
 
+const password =
+prompt("Contraseña de eliminación");
+
+if(password !== DELETE_PASSWORD){
+
+  alert("Contraseña incorrecta");
+  return;
+
+}
+
+
   const vehiculo =
   vehiculos.find(v=>v.id === id);
 
@@ -1367,6 +1381,16 @@ function renderFibra(){
 
   async function eliminarFibra(id){
 
+const password =
+prompt("Contraseña de eliminación");
+
+if(password !== DELETE_PASSWORD){
+
+  alert("Contraseña incorrecta");
+  return;
+
+}
+
   const fibra =
   fibraData.find(f=>f.id === id);
 
@@ -1489,6 +1513,20 @@ function renderCristales(){
 
         </td>
 
+
+<td>
+
+  <button
+    class="delete-btn"
+    onclick="eliminarCristal(${c.id})"
+  >
+
+    X
+
+  </button>
+
+</td>
+
       </tr>
 
     `;
@@ -1496,6 +1534,36 @@ function renderCristales(){
   });
 
 }
+
+async function eliminarCristal(id){
+
+const password =
+prompt("Contraseña de eliminación");
+
+if(password !== DELETE_PASSWORD){
+
+  alert("Contraseña incorrecta");
+  return;
+
+}
+
+  const cristal =
+  cristalesData.find(c=>c.id === id);
+
+  await deleteDoc(
+
+    doc(
+      db,
+      "cristales",
+      cristal.firebaseId
+    )
+
+  );
+
+  cargarCristales();
+
+}
+
 function toggleProduccion(id){
 
   const contenedor =
@@ -1520,3 +1588,4 @@ window.guardarCristal = guardarCristal;
 window.toggleProduccion = toggleProduccion;
 window.cambiarEstado = cambiarEstado;
 window.toggleCheck = toggleCheck;
+window.eliminarCristal = eliminarCristal;
