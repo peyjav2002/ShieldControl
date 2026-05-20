@@ -1535,7 +1535,7 @@ function renderCristales(){
 
 <td>
 
-  ${c.imagenes.map(img=>`
+ ${(c.imagenes || []).map(img=>`
 
     <a
       href="${img}"
