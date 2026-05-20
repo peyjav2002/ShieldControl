@@ -1425,11 +1425,38 @@ async function guardarCristal(){
 
   }
 
-  const reader = new FileReader();
+  
+const formData = new FormData();
 
-reader.onload = async function(e){
+formData.append(
+  "file",
+  archivo
+);
 
-   const cristal = {
+formData.append(
+  "upload_preset",
+  "shieldcontrol"
+);
+
+const response =
+await fetch(
+
+  "https://api.cloudinary.com/v1_1/dgrw8fpcq/image/upload",
+
+  {
+
+    method:"POST",
+
+    body:formData
+
+  }
+
+);
+
+const data =
+await response.json();
+
+const cristal = {
 
   id:Date.now(),
 
@@ -1448,11 +1475,8 @@ reader.onload = async function(e){
   observaciones:
   document.getElementById("cristalObservaciones").value,
 
-  archivoNombre:
-  archivo.name,
-
   imagen:
-  e.target.result
+  data.secure_url
 
 };
 
@@ -1468,9 +1492,7 @@ cargarCristales();
 
 alert("Cristal guardado");
 
-  };
 
-  reader.readAsDataURL(archivo);
 
 }
 
