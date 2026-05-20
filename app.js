@@ -1414,11 +1414,12 @@ if(password !== DELETE_PASSWORD){
 
 async function guardarCristal(){
 
-  const archivo =
-  document.getElementById("cristalArchivo")
-  .files[0];
+  const archivos =
+document.getElementById("cristalArchivo")
+.files;
+console.log(archivos);
 
-  if(!archivo){
+  if(archivos.length === 0){
 
     alert("Selecciona una imagen");
     return;
@@ -1426,35 +1427,44 @@ async function guardarCristal(){
   }
 
   
-const formData = new FormData();
+const imagenes = [];
 
-formData.append(
-  "file",
-  archivo
-);
+for(const archivo of archivos){
 
-formData.append(
-  "upload_preset",
-  "shieldcontrol"
-);
+  const formData =
+  new FormData();
 
-const response =
-await fetch(
+  formData.append(
+    "file",
+    archivo
+  );
 
-  "https://api.cloudinary.com/v1_1/dgrw8fpcq/image/upload",
+  formData.append(
+    "upload_preset",
+    "shieldcontrol"
+  );
 
-  {
+  const response =
+  await fetch(
 
-    method:"POST",
+    "https://api.cloudinary.com/v1_1/dgrw8fpcq/image/upload",
 
-    body:formData
+    {
 
-  }
+      method:"POST",
 
-);
+      body:formData
 
-const data =
-await response.json();
+    }
+
+  );
+
+  const data =
+  await response.json();
+
+  imagenes.push(data.secure_url);
+
+}
 
 
 const cristal = {
@@ -1476,8 +1486,7 @@ const cristal = {
   observaciones:
   document.getElementById("cristalObservaciones").value,
 
-  imagen:
-  data.secure_url
+  imagenes:imagenes
 
 };
 
@@ -1522,19 +1531,27 @@ function renderCristales(){
 
         <td>${c.observaciones}</td>
 
-        <td>
+       
 
-          <a
-            href="${c.imagen}"
-            target="_blank"
-            class="img-link"
-          >
+<td>
 
-            Ver Imagen
+  ${c.imagenes.map(img=>`
 
-          </a>
+    <a
+      href="${img}"
+      target="_blank"
+      class="img-link"
+    >
 
-        </td>
+      Ver Imagen
+
+    </a>
+
+    <br>
+
+  `).join("")}
+
+</td>
 
 
 <td>
