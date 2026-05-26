@@ -1570,7 +1570,7 @@ const historialVisual = [
 
     equipoCarroceria:"Juan Luis Juarez",
 
-    equipoPuertas:"Alejandro Rangel",
+    equipoPuertas:"Alejandro Lavariega",
 
     cinturones:true,
 
