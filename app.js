@@ -3,6 +3,17 @@ from "./firebase.js";
 
 
 import {
+  actividadesCarroceria
+}
+from "./actividadesCarroceria.js";
+
+import {
+  actividadesPuertas
+}
+from "./actividadesPuertas.js";
+
+
+import {
 
   equiposCarroceria,
   equiposPuertas
@@ -143,152 +154,6 @@ async function cargarCristales(){
 cargarCristales();
 
 
-
-/* ========================================= */
-/* ACTIVIDADES CARROCERIA */
-/* ========================================= */
-
-const actividadesCarroceria = [
-
-  {
-    nombre:"Foliado",
-    dias:0.041
-  },
-
-  {
-    nombre:"Desmontaje de puertas",
-    dias:0.0833
-  },
-
-  {
-    nombre:"Desarme interno",
-    dias:3
-  },
-
-  {
-    nombre:"Almacenado de piezas de carrocería",
-    dias:3
-  },
-
-  {
-    nombre:"Protección del piso",
-    dias:0.041
-  },
-
-  {
-    nombre:"Segunda protección de carrocería",
-    dias:0.041
-  },
-
-  {
-    nombre:"Entrega de acero de carrocería",
-    dias:0.041
-  },
-
-  {
-    nombre:"Entrega fibra",
-    dias:0.041
-  },
-
-  {
-    nombre:"Opaco de Carrocería Poste A-B-C / Coronas",
-    dias:3
-  },
-
-  {
-    nombre:"Opaco Zona de Carga / Poste D / Concha",
-    dias:10
-  },
-
-  {
-    nombre:"Opaco Carrocería Toldo",
-    dias:2
-  },
-
-  {
-    nombre:"Arrivo de cristales",
-    dias:0
-  },
-
-  {
-    nombre:"Pegado de cristales",
-    dias:3
-  },
-
-  {
-    nombre:"Armado",
-    dias:7
-  }
-
-];
-
-/* ========================================= */
-/* ACTIVIDADES PUERTAS */
-/* ========================================= */
-
-const actividadesPuertas = [
-
-  {
-    nombre:"Desmontaje de puertas",
-    dias:0.0833
-  },
-
-  {
-    nombre:"Desarme de puerta",
-    dias:0.0833
-  },
-
-  {
-    nombre:"Almacenado de piezas",
-    dias:1
-  },
-
-  {
-    nombre:"Entrega de fibra",
-    dias:0.041
-  },
-
-  {
-    nombre:"Entrega de acero",
-    dias:0.0833
-  },
-
-  {
-    nombre:"Apertura de lámina",
-    dias:2
-  },
-
-  {
-    nombre:"Pegado de fibra",
-    dias:1
-  },
-
-  {
-    nombre:"Opaco acero",
-    dias:3
-  },
-
-  {
-    nombre:"Arrivo de cristales",
-    dias:0
-  },
-
-  {
-    nombre:"Montaje sistema de elevación",
-    dias:1
-  },
-
-  {
-    nombre:"Cerrado de lámina / Armado",
-    dias:3
-  },
-
-  {
-    nombre:"Pintura",
-    dias:1
-  }
-
-];
 
 /* ========================================= */
 /* LOGIN */
