@@ -600,6 +600,23 @@ function renderVehiculos(){
   tabla.innerHTML = "";
 
  [...historialVisual,...vehiculos]
+
+.sort((a,b)=>{
+
+  const otA =
+  parseInt(
+    a.ot.replace(/\D/g,'')
+  );
+
+  const otB =
+  parseInt(
+    b.ot.replace(/\D/g,'')
+  );
+
+  return otA - otB;
+
+})
+
 .forEach((v,index)=>{
 
     tabla.innerHTML += `
@@ -706,18 +723,26 @@ function renderVehiculos(){
 
         </td>
 
-        <td>
+       <td>
 
-          <button
-            class="delete-btn"
-            onclick="eliminarVehiculo(${v.id})"
-          >
+  <button
+    onclick="editarVehiculo(${v.id})"
+  >
 
-            X
+    ✏
 
-          </button>
+  </button>
 
-        </td>
+  <button
+    class="delete-btn"
+    onclick="eliminarVehiculo(${v.id})"
+  >
+
+    X
+
+  </button>
+
+</td>
 
       </tr>
 
@@ -760,6 +785,50 @@ if(password !== DELETE_PASSWORD){
   cargarVehiculos();
 
 }
+
+
+async function editarVehiculo(id){
+
+  const vehiculo =
+  vehiculos.find(v=>v.id === id);
+
+  const nuevaFecha =
+  prompt(
+
+    "Nueva fecha cristales",
+
+    vehiculo.fechaCristales || ""
+
+  );
+
+  if(nuevaFecha === null){
+
+    return;
+
+  }
+
+  await updateDoc(
+
+    doc(
+      db,
+      "vehiculos",
+      vehiculo.firebaseId
+    ),
+
+    {
+
+      fechaCristales:
+      nuevaFecha
+
+    }
+
+  );
+
+  cargarVehiculos();
+
+}
+
+
 /* ========================================= */
 /* EQUIPOS */
 /* ========================================= */
@@ -1287,7 +1356,25 @@ function renderFibra(){
 
   tabla.innerHTML = "";
 
-  fibraData.forEach(f=>{
+  fibraData
+
+.sort((a,b)=>{
+
+  const otA =
+  parseInt(
+    a.ot.replace(/\D/g,'')
+  );
+
+  const otB =
+  parseInt(
+    b.ot.replace(/\D/g,'')
+  );
+
+  return otA - otB;
+
+})
+
+.forEach(f=>{
 
     tabla.innerHTML += `
 
@@ -1629,3 +1716,6 @@ window.toggleProduccion = toggleProduccion;
 window.cambiarEstado = cambiarEstado;
 window.toggleCheck = toggleCheck;
 window.eliminarCristal = eliminarCristal;
+window.editarVehiculo =
+editarVehiculo;
+
