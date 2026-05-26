@@ -1,6 +1,16 @@
 import { db }
 from "./firebase.js";
 
+
+import {
+
+  equiposCarroceria,
+  equiposPuertas
+
+}
+from "./equipos.js";
+
+
 import {
 
   collection,
@@ -133,34 +143,6 @@ async function cargarCristales(){
 cargarCristales();
 
 
-
-
-/* ========================================= */
-/* EQUIPOS */
-/* ========================================= */
-
-const equiposCarroceria = [
-
-  "Luis Martinez",
-  "Pedro Pascual",
-  "Angel Jimenez",
-  "Alberto Martinez",
-  "Luis Becerril",
-  "Juan Luis",
-  "Alejandro Rangel",
-  "Aldo Angeles",
-  "Oscar Madrid"
-
-];
-
-const equiposPuertas = [
-
-  "Benito Cocileon",
-  "Carlos Callejas",
-  "Alejandro Lavarieja",
-  "Nancy Cortez"
-
-];
 
 /* ========================================= */
 /* ACTIVIDADES CARROCERIA */
@@ -726,8 +708,9 @@ function renderVehiculos(){
        <td>
 
   <button
-    onclick="editarVehiculo(${v.id})"
-  >
+  class="edit-btn"
+  onclick="editarVehiculo(${v.id})"
+>
 
     ✏
 
